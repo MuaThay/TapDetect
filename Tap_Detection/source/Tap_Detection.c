@@ -43,16 +43,9 @@
 #include "iic.h"
 
 
-#define DEMO_MODE
-#define DEMO_AXIS 0
-
-
-volatile char acc_data_rdy = 0;
-
 void PORTA_IRQHandler(){
-	if(GPIO_GetPinsInterruptFlags(GPIOA) & (1<<15)){
+	if(GPIO_GetPinsInterruptFlags(GPIOA) & (1<<15)){ //1<<15 bitovy posun o 15 miest do lava...
 		GPIO_ClearPinsInterruptFlags(GPIOA, (1 << 15));
-		acc_data_rdy = 1;
 	}
 	if(GPIO_GetPinsInterruptFlags(GPIOA) & (1<<14)){
 		GPIO_ClearPinsInterruptFlags(GPIOA, (1 << 14));
